@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather in Almaty</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+</head>
+
+<body>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Weather in Almaty
+                </h1>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <h2>Weather in Almaty for 5 days</h2>
+        <div class="container">
+                <table class="table">
+                    <thead>
+                            <tr>
+                            <th>Date</th>
+                            <th>Min.temp</th>
+                            <th>Max.temp</th>
+                            <th>Day</th>
+                            <th>Day precipitation</th>
+                            <th>Night</th>
+                            <th>Night precipitation</th>
+                        </tr>
+                    </thead>
+                    {% for weather in weather_data_days %}
+                    <tbody>
+                        <tr>
+                            <td><span class="subtitle">{{ weather.date }}</span></td>
+                            <td><span class="subtitle">{{ weather.min_temp }}° C</span></td>
+                            <td><span class="subtitle">{{ weather.max_temp }}° C</span></td>
+                            <td><span class="subtitle">{{ weather.day }}</span></td>
+                            <td><span class="subtitle">{{ weather.day_prec }}</span></td>
+                            <td><span class="subtitle">{{ weather.night }}</span></td>
+                            <td><span class="subtitle">{{ weather.night_prec }}</span></td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>   
+        </div>
+    </section>
+    <section class="section">
+        <h2>Weather in Almaty for the next 12 hours</h2>
+        <div class="container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Datetime</th>
+                            <th>Temperature</th>
+                            <th>Description</th>
+                            <th>Precipitation</th>
+                            <th>Daylight</th>
+                            <th>Precipitation probability</th>
+                        </tr>
+                    </thead>
+                    {% for weather in weather_data_hours %}
+                    <tbody>
+                        <tr>
+                            <td><span class="subtitle">{{ weather.datetime }}</span></td>
+                            <td><span class="subtitle">{{ weather.temp }}° C</span></td>
+                            <td><span class="subtitle">{{ weather.desc }}</span></td>
+                            <td><span class="subtitle">{{ weather.prec }}</span></td>
+                            <td><span class="subtitle">{{ weather.daylight }}</span></td>
+                            <td><span class="subtitle">{{ weather.prec_prob }}%</span></td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>   
+        </div>
+    </section>
+    
+    <footer class="footer">
+    </footer>
+</body>
+
+</html>
