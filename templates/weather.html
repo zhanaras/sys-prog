@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Weather in Almaty</title>
+    <title>The best weather forecast app</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
 </head>
 
@@ -14,24 +14,25 @@
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">
-                    Weather in Almaty
+                    The best weather forecast app
                 </h1>
             </div>
         </div>
     </section>
     <section class="section">
-        <h2>Weather in Almaty for 5 days</h2>
+        <h1>Weather in {{ city.name }}, {{ city.country }} for 5 days</h1>
+        <br>
         <div class="container">
+            <h2>{{ weather_desc }}</h2>
                 <table class="table">
                     <thead>
                             <tr>
                             <th>Date</th>
-                            <th>Min.temp</th>
-                            <th>Max.temp</th>
+                            <th>Min</th>
+                            <th>Max</th>
+                            <th>Feels like</th>
                             <th>Day</th>
-                            <th>Day precipitation</th>
                             <th>Night</th>
-                            <th>Night precipitation</th>
                         </tr>
                     </thead>
                     {% for weather in weather_data_days %}
@@ -40,10 +41,9 @@
                             <td><span class="subtitle">{{ weather.date }}</span></td>
                             <td><span class="subtitle">{{ weather.min_temp }}° C</span></td>
                             <td><span class="subtitle">{{ weather.max_temp }}° C</span></td>
+                            <td><span class="subtitle">{{ weather.feels_like }}° C</span></td>
                             <td><span class="subtitle">{{ weather.day }}</span></td>
-                            <td><span class="subtitle">{{ weather.day_prec }}</span></td>
                             <td><span class="subtitle">{{ weather.night }}</span></td>
-                            <td><span class="subtitle">{{ weather.night_prec }}</span></td>
                         </tr>
                     </tbody>
                     {% endfor %}
@@ -51,13 +51,17 @@
         </div>
     </section>
     <section class="section">
-        <h2>Weather in Almaty for the next 12 hours</h2>
+        <h1>Weather in {{ city.name }}, {{ city.country }} for the next 12 hours</h1>
         <div class="container">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>Datetime</th>
                             <th>Temperature</th>
+                            <th>Feels like</th>
+                            <th>UV-index</th>
+                            <th>Humidity</th>
+                            <th>Wind</th>
                             <th>Description</th>
                             <th>Precipitation</th>
                             <th>Daylight</th>
@@ -69,6 +73,10 @@
                         <tr>
                             <td><span class="subtitle">{{ weather.datetime }}</span></td>
                             <td><span class="subtitle">{{ weather.temp }}° C</span></td>
+                            <td><span class="subtitle">{{ weather.feels_like }}° C</span></td>
+                            <td><span class="subtitle">{{ weather.uv }} {{ weather.uv_text }}</span></td>
+                            <td>{{ weather.humidity }}</td>
+                            <td><span class="subtitle">{{ weather.wind_speed }} {{ weather.wind_speed_unit }}</span></td>
                             <td><span class="subtitle">{{ weather.desc }}</span></td>
                             <td><span class="subtitle">{{ weather.prec }}</span></td>
                             <td><span class="subtitle">{{ weather.daylight }}</span></td>
