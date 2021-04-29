@@ -1,9 +1,12 @@
 import requests
 from flask import Flask, render_template, request
-from flask_sqlalchemy import SQLAlchemy 
-from bs4 import BeautifulSoup
+from flask_cors import CORS
+import test
+import cython
+
 
 app = Flask(__name__)
+CORS(app)
 app.config['DEBUG'] = True
 
 @app.route('/', methods=['GET'])
@@ -20,9 +23,10 @@ def index():
         url_city = 'http://dataservice.accuweather.com/locations/v1/cities/search'
         url_days = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/{}'
         url_hours = 'http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/{}'
-        api_key = '8y059JI2OoAmDhmkFBb8DAGEFMAJDGFS'
+        api_key = 'Zgv5XyVzs6rc3gPVseATgTTbCVRciKB2'
         weather_data_days = []
         weather_data_hours = []
+        prec_prob = []
 
         r_city_key = requests.get(url_city, 
             params={
@@ -80,6 +84,16 @@ def index():
             }
 
             weather_data_hours.append(weather)
+            prec_prob.append(weather['prec_prob'])
 
-        return render_template('weather.html', weather_data_days=weather_data_days,  weather_data_hours=weather_data_hours, city=city, weather_desc=weather_desc)
+            @cython.locals(nums=cython.array, sum=cython.int_types)
+            def getAve():
+                nums=prec_prob
+                sum=0
+                for n in nums:
+                    sum+=n
+                return sum/len(nums)
 
+
+        return render_template('weather.html', weather_data_days=weather_data_days,  weather_data_hours=weather_data_hours, city=city, weather_desc=weather_desc, prec_prob_num=getAve())
+    

@@ -1,0 +1,6 @@
+<input type="text" name="searchStr" [(ngModel)]="searchStr">
+<button (click)="postCity()">Submit</button>
+
+<div *ngFor = "let d in days">
+    {{ d.min_temp }}
+</div>
