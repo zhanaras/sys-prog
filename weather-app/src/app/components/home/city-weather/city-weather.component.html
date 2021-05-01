@@ -1,0 +1,20 @@
+<div class="city-weather" *ngIf='!isLoading && cityWeather != null'>
+    <div class="current-data">
+        <span class="text-muted" *ngIf='degreeType !== degreeTypes.Celsius'>
+            {{ cityWeather.Temperature.Metric.Value }}°C</span>
+        <span class="text-muted" *ngIf='degreeType === degreeTypes.Celsius'>
+            {{ cityWeather.Temperature.Imperial.Value }}°F</span>
+        <div class="weatherText" *ngIf="cityWeather">
+            <p> {{ cityWeather.WeatherText }} </p>
+        </div>
+    </div>
+    <div class="current-city">
+        <div class="city-wrapper">
+            <p class="text-muted">Last update: {{ cityWeather.LocalObservationDateTime | date :'h:mm:ss a' }}
+            </p>
+            <span>{{ currCity.name }}</span>
+            <img src="{{'assets/weatherIcons/' + cityWeather.WeatherIcon}}-s.png">
+        </div>
+    </div>
+</div>
+<div class="dropdown-divider"></div>

@@ -1,0 +1,19 @@
+nav {
+  position: sticky;
+  a {
+    img {
+      width: 2em;
+    }
+  }
+  .nav-item {
+    .nav-link {
+      color: rgba(165, 165, 165, 0.7);
+      &:hover {
+        color: #fff;
+      }
+      &.active {
+        color: #fff;
+      }
+    }
+  }
+}

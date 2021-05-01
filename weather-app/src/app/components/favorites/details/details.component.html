@@ -1,0 +1,36 @@
+<mat-dialog-content>
+    <div class="main-title">
+        <img [style.visibility]="currentIndex === 0 ? 'hidden' : 'visible'" (click)='getHourDOWN()'
+            src="assets/favIcons/arrow-left.png">
+        <p>Hourly info for : <b>{{ currentHourInfo.DateTime | date :'h:mm a' }}</b></p>
+        <img [style.visibility]="currentIndex === 11 ? 'hidden' : 'visible'" (click)='getHourUP()'
+            src="assets/favIcons/arrow-right.png">
+    </div>
+    <div class="dropdown-divider"></div>
+    <div class="main-preview">
+        <div class="col-preview">
+            <span><b>Humidity</b>
+                {{currentHourInfo.RelativeHumidity}}%</span>
+            <span><b>Visibility</b>
+                {{currentHourInfo.Visibility.Value}}{{currentHourInfo.Visibility.Unit}}</span>
+            <span><b>Cloud Cover</b>
+                {{currentHourInfo.CloudCover}}%</span>
+            <b>Wind</b>
+            <span>Speed: {{currentHourInfo.Wind.Speed.Value}}{{currentHourInfo.Wind.Speed.Unit}}</span>
+            <span>Direction:
+                {{currentHourInfo.Wind.Direction.Degrees}}°{{currentHourInfo.Wind.Direction.Localized}}</span>
+        </div>
+        <div class="col-preview">
+            <b>Rain</b>
+            <span>Probability: {{currentHourInfo.RainProbability}}%</span>
+            <span>Amount: {{currentHourInfo.Rain.Value}}{{currentHourInfo.Rain.Unit}}</span>
+            <b>Ice</b>
+            <span>Probability: {{currentHourInfo.IceProbability}}%</span>
+            <span>Amount: {{currentHourInfo.Ice.Value}}{{currentHourInfo.Ice.Unit}}</span>
+            <b>Snow</b>
+            <span>Probability: {{currentHourInfo.SnowProbability}}%</span>
+            <span>Amount: {{currentHourInfo.Snow.Value}}{{currentHourInfo.Snow.Unit}}</span>
+        </div>
+    </div>
+
+</mat-dialog-content>

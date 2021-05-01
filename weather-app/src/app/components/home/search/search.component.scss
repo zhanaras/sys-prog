@@ -1,0 +1,34 @@
+.search-wraper {
+  margin: 0 5em;
+  @media (max-width: 415px) {
+    margin: 0 1em;
+  }
+  form {
+    input {
+      background-image: url(src/assets/homeIcons/search.png);
+      background-repeat: no-repeat;
+      text-indent: 20px;
+      background-position: 10px 10px;
+      &:active {
+        background-image: none;
+      }
+    }
+  }
+}
+
+.result-box {
+  ul {
+    width: 86%;
+    position: absolute;
+    opacity: 0.8;
+    z-index: 10000;
+    .list-group-item {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      img {
+        width: 1.5em;
+      }
+    }
+  }
+}
